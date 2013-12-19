@@ -9,6 +9,9 @@ package me.vxue.tps.task;
 
 import java.io.Serializable;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public abstract class AbstractTask implements Comparable<AbstractTask>, Serializable  {
 	
 	/***
@@ -30,12 +33,9 @@ public abstract class AbstractTask implements Comparable<AbstractTask>, Serializ
 	 */
 	private String processorName;
 
-	
-	public abstract int compareTo(AbstractTask t);
-
 	@Override
 	public String toString() {
-		return "Task - Name: " + name + ", Priority: " + priority.toString();
+		return "Task(Name: " + name + ", Priority: " + priority.toString() + ", ProcessorName: " + processorName + ")";
 	}
 
 	public PRIORITY getPriority() {
@@ -45,6 +45,17 @@ public abstract class AbstractTask implements Comparable<AbstractTask>, Serializ
 	public void setPriority(PRIORITY priority) {
 		this.priority = priority;
 	}
+	
+//  SKip the mapping, enfore only 3 priority.
+//	public void setPriority(int priority) {
+//		if (priority < PRIORITY.HIGH.ordinal() ) {
+//			this.priority = PRIORITY.HIGH;
+//		} else if (priority > PRIORITY.LOW.ordinal()) {
+//			this.priority = PRIORITY.LOW;
+//		} else {
+//			this.priority = PRIORITY.values()[priority];
+//		}
+//	}
 
 	public String getName() {
 		return name;
@@ -62,5 +73,30 @@ public abstract class AbstractTask implements Comparable<AbstractTask>, Serializ
 		this.processorName = processorName;
 	}
 	
+	public int compareTo(AbstractTask t) {
+		return getPriority().ordinal() - t.getPriority().ordinal();
+	}
 	
+	public AbstractTask() {
+	}
+	
+	public AbstractTask(String name, String processorName) {
+		this.name = name;
+		this.processorName = processorName;
+	}
+	
+	public AbstractTask(String name, String processorName, PRIORITY priority) {
+		this(name, processorName);
+		
+		this.priority = priority;
+	}
+	
+	protected Logger getLogger() {
+		return LogManager.getLogger(getClass());
+	}
+	
+	/***
+	 * The callback of on process finished.
+	 */
+	public abstract void OnResult();
 }

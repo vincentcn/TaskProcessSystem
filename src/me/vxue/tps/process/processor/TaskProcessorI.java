@@ -14,7 +14,7 @@ public interface TaskProcessorI {
 	 * 
 	 * @return processor name.
 	 */
-	public String getProccessorName();
+	public String getProcessorName();
 	
 
 	/***
