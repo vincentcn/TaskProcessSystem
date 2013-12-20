@@ -1,5 +1,5 @@
-TaskProcessSystem
-=================
+Task Process System
+===================
 
 **TPS(Task Process System)** is a system can be described as following.
 * A task based system. "Task" is the basic unit of TPS. A task can be a sequence of business processes/data flow. Every function supported by the system will be describe as a task. And the system will be extended by supporting more and more tasks.
