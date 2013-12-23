@@ -17,13 +17,12 @@ public abstract class AbstractTask implements Comparable<AbstractTask>, Serializ
 	/***
 	 * The priority of Task. 
 	 */
-	public enum PRIORITY {HIGH, MEDIUM, LOW};
 	
 	private static final long serialVersionUID = -5378414384076557040L;
 	/***
 	 * priority of task.
 	 */
-	private PRIORITY priority = PRIORITY.MEDIUM;
+	private TaskPriority priority = TaskPriority.MEDIUM;
 	/***
 	 * task name
 	 */
@@ -38,11 +37,11 @@ public abstract class AbstractTask implements Comparable<AbstractTask>, Serializ
 		return "Task(Name: " + name + ", Priority: " + priority.toString() + ", ProcessorName: " + processorName + ")";
 	}
 
-	public PRIORITY getPriority() {
+	public TaskPriority getPriority() {
 		return priority;
 	}
 
-	public void setPriority(PRIORITY priority) {
+	public void setPriority(TaskPriority priority) {
 		this.priority = priority;
 	}
 	
@@ -85,7 +84,7 @@ public abstract class AbstractTask implements Comparable<AbstractTask>, Serializ
 		this.processorName = processorName;
 	}
 	
-	public AbstractTask(String name, String processorName, PRIORITY priority) {
+	public AbstractTask(String name, String processorName, TaskPriority priority) {
 		this(name, processorName);
 		
 		this.priority = priority;

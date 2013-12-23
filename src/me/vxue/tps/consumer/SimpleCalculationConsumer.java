@@ -10,6 +10,7 @@ import java.util.Random;
 import me.vxue.tps.process.TaskProcessManager;
 import me.vxue.tps.process.processor.SimpleCalculationProcessor;
 import me.vxue.tps.task.SimpleCalculationTask;
+import me.vxue.tps.task.TaskPriority;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -68,13 +69,13 @@ public class SimpleCalculationConsumer {
 		processor.setProcessCompletedListener(manager);
 		
 		logger.info("beginning to run messive simple calculation tasks.");
-		SimpleCalculationTask.PRIORITY randomPriority;
+		TaskPriority randomPriority;
 		SimpleCalculationTask.OPERATOR operator;
 		Random random = new Random(System.currentTimeMillis());
 		SimpleCalculationTask task;
 		for (int i=0; i < CONSUM_TASK_COUNT; i++) {
 			taskName = "simpleCalculationTask " + i;
-			randomPriority = SimpleCalculationTask.PRIORITY.values()[(Math.abs(random.nextInt()) % SimpleCalculationTask.PRIORITY.values().length)];
+			randomPriority = TaskPriority.values()[(Math.abs(random.nextInt()) % TaskPriority.values().length)];
 			task = new SimpleCalculationTask(taskName, processorName, randomPriority);
 			operator = SimpleCalculationTask.OPERATOR.values()[(Math.abs(random.nextInt()) % SimpleCalculationTask.OPERATOR.values().length)]; 
 			task.SetOperantor(operator);

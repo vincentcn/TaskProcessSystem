@@ -35,7 +35,7 @@ public class SimpleCalculationTask extends AbstractTask {
 		super(name, processorName);
 	}
 	
-	public SimpleCalculationTask(String name, String processorName, PRIORITY priority) {
+	public SimpleCalculationTask(String name, String processorName, TaskPriority priority) {
 		super(name, processorName, priority);
 	}
 	
